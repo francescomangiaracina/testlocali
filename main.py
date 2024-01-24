@@ -13,7 +13,7 @@ app = FastAPI()
 fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
 
 
-@app.get("/items/{item_id}")
+@app.get("/items_4/{item_id}")
 async def read_item(item_id: str, q: str | None = None, short: bool = False):
     item = {"item_id": item_id}
     if q:
