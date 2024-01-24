@@ -1,12 +1,24 @@
 from fastapi import FastAPI
 from enum import Enum
+from pydantic import BaseModel
 
+# Dichiarazione delle classi
+
+# Class 1
 
 class ModelName(str, Enum):
     alexnet = "alexnet"
     resnet = "resnet"
     lenet = "lenet"
 
+# Class 2
+
+class Item(BaseModel):
+    name: str
+    description: str | None = None
+    price: float
+    tax: float | None = None
+    
 
 app = FastAPI()
 
@@ -91,3 +103,7 @@ async def get_model(model_name: ModelName):
 @app.get("/files/{file_path:path}")
 async def read_file(file_path: str):
     return {"file_path": file_path}
+
+@app.post("/items_500/")
+async def create_item(item: Item):
+    return item
